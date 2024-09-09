@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+file: console.py
+
+This module contains the entry point of the command interpreter for the AirBnB clone project. The interpreter provids commands to manage objects like creating, updating and deleting instances.
+"""
+
 import cmd 
 
 class HBNBCommand(cmd.Cmd):
