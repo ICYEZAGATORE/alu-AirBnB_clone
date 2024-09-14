@@ -88,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
             obj = storage.all().get(key)
             
             if not obj:
-                print("** no instances found **")
+                print("** no instance found **")
                 
             else:
                 print(obj)
