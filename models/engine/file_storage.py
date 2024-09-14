@@ -37,15 +37,9 @@ class FileStorage:
     def save(self):
         """converting a class instance into a json file/format serialization"""
         
-        obj_dict = {}
-
-        #convert each object to its dictionary representation
-        for key, obj in FileStorage.__objects.items():
-            obj_dict[key] = obj.to_dict()
-
-            #write the serialized objects in the JSON file
-            with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
-                json.dump(obj_dict, file, default=str)
+        obj_dict = {key: obj.to_dict() for key, obj in FileStorage.__objects.items()}
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
+            json.dump(obj_dict, file, default=str)
 
     def reload(self):
         """taking back the json file into a class instance deserialization"""
@@ -57,9 +51,9 @@ class FileStorage:
 
                 for key, value in obj_dict.items():
                     class_name , obj_id = key.split(".")
-                    if class_name in globals():
-                       cls = globals()[class_name] # get class anme from global scope                       
-                       instance = cls(**values) # Create an instance using the dictionary of attributes
-                       FileStorage.__objects[key] = instance
+                    if class_name in globals() and isinstance(value, dict):
+                        cls = globals()[class_name] # get class anme from global scope
+                        instance = cls(**values) # Create an instance using the dictionary of attributes
+                        FileStorage.__objects[key] = instance
             except Exception:
                     pass
