@@ -12,9 +12,11 @@ from models.amenity import Amenity
 from models.review import Review
 
 class FileStorage:
-    """The FileStorage class handles serialization and deserialization of instances to and from JSON format """
-    
-        #private class attribute
+    """The FileStorage class handles serialization and deserialization of instances to and from JSON format
+               Attributes:
+                __file_path (str): Path to the JSON file.
+                 __objects (dict): Dictionary to store objects by <class name>.id.
+    """
     
     __file_path = "file.json" #path to json file
     __objects = {} # Dictionary to store all objects by <class name>.id
@@ -26,12 +28,10 @@ class FileStorage:
 
     def new(self, obj):
         """ adds new object to __objects with key <class name>.id """
-        
-        obj_class_name = obj.__class__.__name__
 
-        key = "{}.{}".format(obj_class_name, obj.id)
-        
-        FileStorage.__objects[key] = obj
+        if obj:
+            key = f"{obj.__class__.name__}.{obj.id}"
+            FileStorage.__objects[key] = obj
 
 
     def save(self):
@@ -45,7 +45,7 @@ class FileStorage:
 
             #write the serialized objects in the JSON file
             with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
-                json.dump(obj_dict, file)
+                json.dump(obj_dict, file, default=str)
 
     def reload(self):
         """taking back the json file into a class instance deserialization"""
@@ -61,5 +61,5 @@ class FileStorage:
                        cls = globals()[class_name] # get class anme from global scope                       
                        instance = cls(**values) # Create an instance using the dictionary of attributes
                        FileStorage.__objects[key] = instance
-            except json.JSONDecodeError:
+            except Exception:
                     pass
