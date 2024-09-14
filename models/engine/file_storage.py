@@ -61,7 +61,7 @@ class FileStorage:
                        cls = globals()[class_name] # get class anme from global scope                       
                        instance = cls(**values) # Create an instance using the dictionary of attributes
                        FileStorage.__objects[key] = instance
-                except Exception:
+            except Exception:
                     pass
 
 
