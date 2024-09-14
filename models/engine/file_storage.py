@@ -30,7 +30,7 @@ class FileStorage:
         """ adds new object to __objects with key <class name>.id """
 
         if obj:
-            key = f"{obj.__class__.name__}.{obj.id}"
+            key = "{}.{}".format(obj.__class__.__name__, obj.id)
             FileStorage.__objects[key] = obj
 
 
