@@ -22,13 +22,13 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
     
     valid_classes = {
-            "BaseModel": BaseModel,
-            "User": User
-            "State" : State
-            "City" : City
-            "Amenity" : Amenity
-            "Place" : Place
-            "Review" : Review
+        "BaseModel": BaseModel,
+        "User": User,
+        "State" : State,
+        "City" : City,
+        "Amenity" : Amenity,
+        "Place" : Place,
+        "Review" : Review
     }
 
     #This method handles the quit command
