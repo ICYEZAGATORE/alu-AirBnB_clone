@@ -2,7 +2,9 @@
 """
 file: console.py
 
-This module contains the entry point of the command interpreter for the AirBnB clone project. The interpreter provids commands to manage objects like creating, updating and deleting instances.
+This module contains the entry point of the command interpreter for 
+the AirBnB clone project. The interpreter provids commands 
+to manage objects like creating, updating and deleting instances.
 """
 
 import cmd 
@@ -16,19 +18,21 @@ from models.place import Place
 from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
-    """to handle the commands of the HBNB project and inherits from cmd.Cmd to manage
-    the command loop and user input"""
+    """to handle the commands of the HBNB project and inherits 
+    from cmd.Cmd to manage
+    the command loop and user input
+    """
     
     prompt = "(hbnb)"
     
     valid_classes = {
-        "BaseModel": BaseModel,
-        "User": User,
-        "State" : State,
+        "BaseModel":BaseModel,
+        "User":User,
+        "State" :State,
         "City" : City,
-        "Amenity" : Amenity,
-        "Place" : Place,
-        "Review" : Review
+        "Amenity" :Amenity,
+        "Place" :Place,
+        "Review" :Review
     }
 
     #This method handles the quit command
@@ -55,12 +59,12 @@ class HBNBCommand(cmd.Cmd):
         
         class_name = args.split()[0]
         if class_name not in HBNBCommand.valid_classes:
-            print("** class doesnt exist **")
+            print("** class doesn't exist **")
             return
 
         new_instance = HBNBCommand.valid_classes[class_name]()
         new_instance.save()
-        print(new_instance.id())
+        print(new_instance.id)
 
 
     def do_show(self, args):
