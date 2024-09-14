@@ -8,8 +8,7 @@ class User(BaseModel):
         AirBnB   clone projects """
        
        # public class attributes
-        email = ""
-        password = ""
-        first_name = ""
-        last_name = ""
-        
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""     
